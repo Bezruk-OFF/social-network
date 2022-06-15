@@ -22,7 +22,7 @@ let initialState = {
             avatar: 'https://bipbap.ru/wp-content/uploads/2021/07/modnye-avatarki-dlya-vk_0.jpg'
         }
     ],
-    newPostText: '0'
+    newPostText: ''
 };
 
 const profileReducer = (state = initialState, action) => {
