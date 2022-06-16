@@ -35,12 +35,16 @@ const profileReducer = (state = initialState, action) => {
                 likesCount: 0,
                 avatar: 'https://pbs.twimg.com/media/EQP9bQGWAAE9bbZ.jpg'
             };
-            state.posts.push(newPost);
-            state.newPostText = '';
-            return state;
+            return {
+                ...state,
+                posts: [...state.posts, newPost],
+                newPostText: ''
+            };
         case UPDATE_NEW_POST_TEXT:
-            state.newPostText = action.newText;
-            return state;
+            return {
+                ...state,
+                newPostText: action.newText
+            };
         default:
             return state;
     }
