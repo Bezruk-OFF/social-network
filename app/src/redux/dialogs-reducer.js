@@ -12,7 +12,7 @@ let initialState = {
     ],
     messages: [
         { id: 1, message: 'Привет' },
-        { id: 2, message: 'Как деда' },
+        { id: 2, message: 'Как дела' },
         { id: 3, message: 'Нас тут много' },
         { id: 4, message: 'Вау...' }
     ],

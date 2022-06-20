@@ -18,6 +18,13 @@
 /* .messages .message {} */
 
 .dialog {
+    word-break: break-all;
+    background: #70c6ff;
     font-style: italic;
     padding-top: 10px;
+    max-width: 300px;
+    width: fit-content;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 10px;
 }

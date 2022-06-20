@@ -4,4 +4,24 @@ img {
 
 .discriptionBlock {
     padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.userPhoto {
+    width: 100px;
+}
+
+.job {
+    width: 500px;
+}
+
+.contacts {
+    display: block;
+}
+
+.contacts a {
+    margin: 5px;
+    text-decoration: none;
+    color: #0E6BA8;
 }
