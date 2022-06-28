@@ -15,7 +15,7 @@ class ProfileContainer extends React.Component {
         // let userId = this.props.match.params.userId;  // react router v5 
         let userId = this.props.router.params.userId;    // react router v6
         if (!userId) {
-            userId = 2
+            userId = 24635
         }
         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId)
             .then(response => {
