@@ -23,3 +23,10 @@ export const usersAPI = {
             .then(response => response.data);
     }
 }
+
+export const authAPI = {
+    authUser() {
+        return instance.get(`auth/me`)
+            .then(response => response.data);
+    }
+}

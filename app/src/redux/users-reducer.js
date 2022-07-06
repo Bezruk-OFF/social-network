@@ -86,7 +86,7 @@ export const getUsers = (currentPage, pageSize) => {
             dispatch(setTotalUsersCount(data.totalCount));
         });
     }
-}
+};
 export const follow = (userId) => {
     return (dispatch) => {
         dispatch(toggleFollowingProgress(true, userId));
@@ -97,7 +97,7 @@ export const follow = (userId) => {
             dispatch(toggleFollowingProgress(false, userId));
         });
     }
-}
+};
 export const unfollow = (userId) => {
     return (dispatch) => {
         dispatch(toggleFollowingProgress(true, userId));
@@ -108,6 +108,6 @@ export const unfollow = (userId) => {
             dispatch(toggleFollowingProgress(false, userId));
         });
     }
-}
+};
 
 export default usersReducer;
