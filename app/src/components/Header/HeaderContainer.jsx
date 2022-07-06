@@ -1,12 +1,11 @@
 import React from 'react';
 import Header from './Header';
-import * as axios from 'axios';
 import { connect } from 'react-redux';
 import { authUser } from '../../redux/auth-reducer';
 
 class HeaderContainer extends React.Component {
     componentDidMount() {
-        this.props.authUser();
+        this.props.authUser();                             //refactoring thunk-redux
 
         // axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {
         //     withCredentials: true
