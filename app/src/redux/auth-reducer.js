@@ -30,12 +30,13 @@ export const setAuthUserData = (id, email, login) => ({ type: SET_USER_DATA, dat
 
 export const getAuthUserdata = () => {
     return (dispath) => {
-        authAPI.me().then(data => {
-            if (data.resultCode === 0) {
-                let { id, email, login } = data.data;
-                dispath(setAuthUserData(id, email, login));
-            }
-        });
+        authAPI.me()
+            .then(data => {
+                if (data.resultCode === 0) {
+                    let { id, email, login } = data.data;
+                    dispath(setAuthUserData(id, email, login));
+                }
+            });
     }
 };
 
