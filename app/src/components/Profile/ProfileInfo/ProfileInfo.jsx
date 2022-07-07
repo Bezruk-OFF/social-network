@@ -1,6 +1,7 @@
 import Preloader from '../../common/preloader/Preloader';
 import classes from './ProfileInfo.module.css';
 import job from '../../../assets/images/looking-for-a-job.jpeg'
+import userPhoto from '../../../assets/images/user.png'
 
 const ProfileInfo = (props) => {
     if (!props.profile) {
@@ -20,7 +21,8 @@ const ProfileInfo = (props) => {
                 <img src="https://avatars.mds.yandex.net/i?id=3bea0bc44282dc923b194c92fcc70709-7083166-images-thumbs&n=13" alt="" />
             </div>
             <div className={classes.discriptionBlock}>
-                <img src={props.profile.photos.large} alt="" className={classes.userPhoto} />
+                {/* <img src={props.profile.photos.large} alt="" className={classes.userPhoto} /> */}
+                <img src={props.profile.photos.large != null ? props.profile.photos.large : userPhoto} alt="user photo" className={classes.userPhoto} />
                 <h2>{props.profile.fullName}</h2>
                 <span>{props.profile.aboutMe}</span>
                 <br />

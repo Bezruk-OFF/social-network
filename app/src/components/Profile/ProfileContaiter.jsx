@@ -1,7 +1,7 @@
 import React from 'react';
 import Profile from './Profile';
 import { connect } from 'react-redux';
-import { userProfile } from '../../redux/profile-reducer';
+import { getUserProfile } from '../../redux/profile-reducer';
 import { useLocation, useNavigate, useParams, } from "react-router-dom";
 
 class ProfileContainer extends React.Component {
@@ -11,7 +11,7 @@ class ProfileContainer extends React.Component {
         if (!userId) {
             userId = 24635
         }
-        this.props.userProfile(userId);                  //  refactoring thunk-redux
+        this.props.getUserProfile(userId);                  //  refactoring thunk-redux
 
         //     profileAPI.userProfile(userId)
         //         .then(data => {
@@ -49,4 +49,4 @@ function withRouter(ProfileContainer) {                               // react r
 }
 
 // export default connect(mapStateToProps, { setUserProfile })(WithDataUrlContainerComponent);  // react router v5
-export default connect(mapStateToProps, { userProfile })(withRouter(ProfileContainer));      // react router v6
+export default connect(mapStateToProps, { getUserProfile })(withRouter(ProfileContainer));      // react router v6
