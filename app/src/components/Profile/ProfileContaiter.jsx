@@ -2,8 +2,9 @@ import React from 'react';
 import Profile from './Profile';
 import { connect } from 'react-redux';
 import { getUserProfile } from '../../redux/profile-reducer';
-import { useLocation, useNavigate, useParams, Navigate } from "react-router-dom";
 import { withAuthRedirect } from '../../hoc/withAuthRedirect';
+import { withRouter } from '../../hoc/withRouter';
+import { compose } from 'redux';
 
 class ProfileContainer extends React.Component {
     componentDidMount() {
@@ -31,22 +32,8 @@ let mapStateToProps = (state) => ({
     profile: state.profilePage.profile
 });
 
-// let WithDataUrlContainerComponent = withRouter(ProfileContainer);  // react router v5
-function withRouter(ProfileContainer) {                               // react router v6
-    function ComponentWithRouterProp(props) {
-        let location = useLocation();
-        let navigate = useNavigate();
-        let params = useParams();
-        return (
-            <ProfileContainer
-                {...props}
-                router={{ location, navigate, params }}
-            />
-        );
-    }
-
-    return ComponentWithRouterProp;
-}
-
-// export default connect(mapStateToProps, { setUserProfile })(WithDataUrlContainerComponent);  // react router v5
-export default withAuthRedirect(connect(mapStateToProps, { getUserProfile })(withRouter(ProfileContainer)));      // react router v6
+export default compose(
+    connect(mapStateToProps, { getUserProfile }),
+    withRouter,
+    withAuthRedirect
+)(ProfileContainer);
