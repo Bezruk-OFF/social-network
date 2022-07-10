@@ -18,54 +18,49 @@ let initialState = {
 };
 
 const usersReducer = (state = initialState, action) => {
-    switch (action.type) {
 
-        case TOGGLE_FOLLOW: {
+    switch (action.type) {
+        case TOGGLE_FOLLOW:
             return {
                 ...state,
                 users: state.users.map(u => {
                     if (u.id === action.userId) {
-                        return { ...u, followed: !u.followed }
+                        return { ...u, followed: !u.followed };
                     }
                     return u;
                 })
-            }
-        }
-
-        case SET_USERS: {
+            };
+        case SET_USERS:
             return {
-                ...state, users: [...action.users]
-                // ...state, users: [...state.users, ...action.users]  // вот так у Димыча и дублируется usrs на странице
-                // users: [...action.users]  // вот решается проблема сдублированием users на странице
+                ...state,
+                users: [...action.users]
+            };
+        case SET_CURRENT_PAGE:
+            return {
+                ...state,
+                currentPage: action.currentPage
             }
-        }
-
-        case SET_CURRENT_PAGE: {
-            return { ...state, currentPage: action.currentPage }
-        }
-
-        case SET_TOTAL_USERS_COUNT: {
-            return { ...state, totalUsersCount: action.totalUsersCount }
-        }
-
-        case TOGGLE_IS_FETCHING: {
-            return { ...state, isFetching: action.isFetching }
-        }
-
-        case TOGGLE_IS_FOLLOWING_PROGRESS: {
+        case SET_TOTAL_USERS_COUNT:
+            return {
+                ...state,
+                totalUsersCount: action.totalUsersCount
+            }
+        case TOGGLE_IS_FETCHING:
+            return {
+                ...state,
+                isFetching: action.isFetching
+            }
+        case TOGGLE_IS_FOLLOWING_PROGRESS:
             return {
                 ...state,
                 followingInProgress: action.isFetching
                     ? [...state.followingInProgress, action.userId]
                     : [state.followingInProgress.filter(id => id != action.userId)]
             }
-        }
-
-
         default:
             return state;
     }
-};
+}
 
 export const toggleFollow = (userId) => ({ type: TOGGLE_FOLLOW, userId });
 export const setUsers = (users) => ({ type: SET_USERS, users });
@@ -86,8 +81,8 @@ export const getUsers = (currentPage, pageSize) => {
                 dispatch(setUsers(data.items));
                 dispatch(setTotalUsersCount(data.totalCount));
             });
-    }
-};
+    };
+}
 export const follow = (userId) => {
     return (dispatch) => {
         dispatch(toggleFollowingProgress(true, userId));
@@ -99,7 +94,7 @@ export const follow = (userId) => {
                 dispatch(toggleFollowingProgress(false, userId));
             });
     }
-};
+}
 export const unfollow = (userId) => {
     return (dispatch) => {
         dispatch(toggleFollowingProgress(true, userId));
@@ -111,6 +106,6 @@ export const unfollow = (userId) => {
                 dispatch(toggleFollowingProgress(false, userId));
             });
     }
-};
+}
 
 export default usersReducer;
