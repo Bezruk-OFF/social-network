@@ -31,9 +31,9 @@ export const setAuthUserData = (id, email, login) => ({ type: SET_USER_DATA, dat
 export const getAuthUserdata = () => {
     return (dispath) => {
         authAPI.me()
-            .then(data => {
-                if (data.resultCode === 0) {
-                    let { id, email, login } = data.data;
+            .then(response => {
+                if (response.data.resultCode === 0) {
+                    let { id, email, login } = response.data.data;
                     dispath(setAuthUserData(id, email, login));
                 }
             });

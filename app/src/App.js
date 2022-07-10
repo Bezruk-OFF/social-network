@@ -20,7 +20,7 @@ const App = (props) => {
           <Route path='/profile/:userId' element={<ProfileContainer />} />
           <Route path='/profile/' element={<ProfileContainer />} />            {/* react router v6 */}
           <Route path='/users/' element={<UsersContainer />} />
-          <Route path='/login/' element={<LoginPage />} />
+          {/* <Route path='/login/' element={<LoginPage />} /> */}
         </Routes>
       </div>
     </div >
