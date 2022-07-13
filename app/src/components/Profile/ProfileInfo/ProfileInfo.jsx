@@ -1,4 +1,4 @@
-import Preloader from '../../common/preloader/Preloader';
+import Preloader from '../../common/Preloader/Preloader';
 import classes from './ProfileInfo.module.css';
 import job from '../../../assets/images/looking-for-a-job.jpeg'
 import userPhoto from '../../../assets/images/user.png'
