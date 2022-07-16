@@ -26,44 +26,38 @@ const authReducer = (state = initialState, action) => {
 
 export const setAuthUserData = (id, email, login, isAuth) => ({ type: SET_USER_DATA, payload: { id, email, login, isAuth } });
 
-export const getAuthUserData = () => {
-    return (dispath) => {
-        authAPI.me()
-            .then(response => {
-                if (response.data.resultCode === 0) {
-                    let { id, email, login } = response.data.data;
-                    dispath(setAuthUserData(id, email, login, true));
-                } else {
-                    let message = response.data.messages.length > 0 ? response.data.messages[0] : 'Some error';
-                    dispath(stopSubmit('login', { _error: message }));
-                }
-            });
-    }
+export const getAuthUserData = () => (dispath) => {
+    return authAPI.me()
+        .then(response => {
+            if (response.data.resultCode === 0) {
+                let { id, email, login } = response.data.data;
+                dispath(setAuthUserData(id, email, login, true));
+            } else {
+                let message = response.data.messages.length > 0 ? response.data.messages[0] : 'Some error';
+                dispath(stopSubmit('login', { _error: message }));
+            }
+        });
 }
 
-export const login = (email, password, rememberMe) => {
-    return (dispath) => {
-        authAPI.login(email, password, rememberMe)
-            .then(response => {
-                if (response.data.resultCode === 0) {
-                    dispath(getAuthUserData());
-                } else {
-                    let message = response.data.messages.length > 0 ? response.data.messages[0] : 'Some error';
-                    dispath(stopSubmit('login', { _error: message }));
-                }
-            });
-    }
+export const login = (email, password, rememberMe) => (dispath) => {
+    authAPI.login(email, password, rememberMe)
+        .then(response => {
+            if (response.data.resultCode === 0) {
+                dispath(getAuthUserData());
+            } else {
+                let message = response.data.messages.length > 0 ? response.data.messages[0] : 'Some error';
+                dispath(stopSubmit('login', { _error: message }));
+            }
+        });
 }
 
-export const logout = () => {
-    return (dispath) => {
-        authAPI.logout()
-            .then(response => {
-                if (response.data.resultCode === 0) {
-                    dispath(setAuthUserData(null, null, null, false));
-                }
-            });
-    }
+export const logout = () => (dispath) => {
+    authAPI.logout()
+        .then(response => {
+            if (response.data.resultCode === 0) {
+                dispath(setAuthUserData(null, null, null, false));
+            }
+        });
 }
 
 export default authReducer;
