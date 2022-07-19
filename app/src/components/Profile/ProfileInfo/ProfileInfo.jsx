@@ -3,6 +3,7 @@ import classes from './ProfileInfo.module.css';
 import job from '../../../assets/images/looking-for-a-job.jpeg'
 import userPhoto from '../../../assets/images/user.png'
 import ProfileStatus from './ProfileStatus'
+import ProfileStatusWithHooks from './ProfileStatusWithHooks';
 
 const ProfileInfo = (props) => {
     if (!props.profile) {
@@ -24,7 +25,7 @@ const ProfileInfo = (props) => {
             <div className={classes.discriptionBlock}>
                 <img src={props.profile.photos.large != null ? props.profile.photos.large : userPhoto} alt="user photo" className={classes.userPhoto} />
                 <h2>{props.profile.fullName}</h2>
-                <ProfileStatus status={props.status} updateUserStatus={props.updateUserStatus} />
+                <ProfileStatusWithHooks status={props.status} updateUserStatus={props.updateUserStatus} />
                 <span>{props.profile.aboutMe}</span>
                 <br />
                 <div className={classes.contacts}>{contacts}</div>
