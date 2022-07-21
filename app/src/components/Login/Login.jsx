@@ -1,15 +1,15 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { login } from '../../redux/auth-reducer';
-import { required } from '../../redux/utils/validators/validators';
+import { required } from '../../utils/validators/validators';
 import { Input } from '../common/FormsControls/FormsControls';
 import { connect } from 'react-redux';
 import { Navigate } from "react-router-dom";
 import classes from '../common/FormsControls/FormsControls.module.css'
 
-let LoginForm = (props) => {
+let LoginForm = ({ handleSubmit, error }) => {
     return (
-        <form onSubmit={props.handleSubmit}>
+        <form onSubmit={handleSubmit}>
             <div>
                 <Field component={Input} name={'email'} validate={[required]} placeholder={'Email'} />
             </div>
@@ -19,8 +19,8 @@ let LoginForm = (props) => {
             <div>
                 <Field component={Input} name={'rememberMe'} type={'checkbox'} /> remember me
             </div>
-            {props.error && <div className={classes.formSummaryError} >
-                {props.error}
+            {error && <div className={classes.formSummaryError} >
+                {error}
             </div>
             }
             <div>

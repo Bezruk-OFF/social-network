@@ -49,11 +49,11 @@ it('результат теста 2', () => {
 
 it('результат теста 3', () => {
     // 1. test data
-    let action = deletePost(1000);
+    let action = deletePost(1);
 
     // 2. action
     let newState = profileReducer(state, action);
 
     // 3. expectation
-    expect(newState.posts.length).toBe(3);
+    expect(newState.posts.length).toBe(2);
 });

@@ -14,7 +14,6 @@ import { withRouter } from './hoc/withRouter';
 import { compose } from 'redux';
 import Preloader from './components/common/Preloader/Preloader';
 
-
 class App extends Component {
   componentDidMount() {
     this.props.initializeApp();
