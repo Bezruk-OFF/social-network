@@ -4,25 +4,25 @@ import job from '../../../assets/images/looking-for-a-job.jpeg'
 import userPhoto from '../../../assets/images/user.png'
 import ProfileStatusWithHooks from './ProfileStatusWithHooks';
 
-const ProfileInfo = (props) => {
-    if (!props.profile) {
+const ProfileInfo = ({ profile, status, updateUserStatus }) => {
+    if (!profile) {
         return <Preloader />
     }
 
     let contacts = [];
-    for (let key in props.profile.contacts) {
-        if (props.profile.contacts[key]) {
-            contacts.push(<a href={props.profile.contacts[key]} target="_blank">{key}</a>);
+    for (let key in profile.contacts) {
+        if (profile.contacts[key]) {
+            contacts.push(<a href={profile.contacts[key]} target="_blank">{key}</a>);
         }
     }
 
     return (
         <div>
             <div className={classes.discriptionBlock}>
-                <img src={props.profile.photos.large != null ? props.profile.photos.large : userPhoto} alt="user photo" className={classes.userPhoto} />
-                <h2>{props.profile.fullName}</h2>
-                <ProfileStatusWithHooks status={props.status} updateUserStatus={props.updateUserStatus} />
-                <span>{props.profile.aboutMe}</span>
+                <img src={profile.photos.large != null ? profile.photos.large : userPhoto} alt="user photo" className={classes.userPhoto} />
+                <h2>{profile.fullName}</h2>
+                <ProfileStatusWithHooks status={status} updateUserStatus={updateUserStatus} />
+                <span>{profile.aboutMe}</span>
                 <br />
                 <div className={classes.contacts}>{contacts}</div>
                 <br />

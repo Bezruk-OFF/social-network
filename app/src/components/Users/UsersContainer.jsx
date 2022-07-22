@@ -8,11 +8,13 @@ import { getUsers, getCurrentPage, getFollowingInProgress, getIsFetching, getPag
 
 class UsersContainer extends React.Component {
     componentDidMount() {
-        this.props.requestUsers(this.props.currentPage, this.props.pageSize);
+        const { currentPage, pageSize } = this.props;
+        this.props.requestUsers(currentPage, pageSize);
     }
 
     onPageChenged = (pageNumber) => {
-        this.props.requestUsers(pageNumber, this.props.pageSize);
+        const { pageSize } = this.props;
+        this.props.requestUsers(pageNumber, pageSize);
     }
 
     render() {
@@ -44,7 +46,7 @@ class UsersContainer extends React.Component {
 //     }
 // }
 
-let mapStateToProps = (state) => {
+let mapStateToProps = (state) => {                      //users-reselectors
     return {
         users: getUsers(state),
         pageSize: getPageSize(state),
