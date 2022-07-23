@@ -13,6 +13,10 @@ import { initializeApp } from './redux/app-reducer';
 import { withRouter } from './hoc/withRouter';
 import { compose } from 'redux';
 import Preloader from './components/common/Preloader/Preloader';
+import store from './redux/redux-store';
+import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+
 
 class App extends Component {
   componentDidMount() {
@@ -46,6 +50,16 @@ const mapStateToProps = (state) => ({
   initialized: state.app.initialized
 })
 
-export default compose(
+let AppContainer = compose(
   withRouter,
   connect(mapStateToProps, { initializeApp }))(App);
+
+const SamuraiJSApp = (props) => {
+  return <BrowserRouter>
+    <Provider store={store}>
+      <AppContainer />
+    </Provider>
+  </BrowserRouter>
+}
+
+export default SamuraiJSApp;
